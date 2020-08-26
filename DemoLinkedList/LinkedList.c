@@ -19,7 +19,7 @@ int delete(int value, intLinkedList **head);
 int indexOf(int value, intLinkedList *head);
 int insert(intLinkedList **head, int value, int atIndex);
 int cout(intLinkedList *head); //Dem so phan tu cua Linked List
-intLinkedList* getNodeAtIndex(intLinkedList *head, int index);
+intLinkedList *getNodeAtIndex(intLinkedList *head, int index);
 
 int main(int argc, char const *argv[])
 {
@@ -36,9 +36,9 @@ int main(int argc, char const *argv[])
     display(head);
     printf("\nSo phan tu: %d", cout(head));
 
-    intLinkedList *node;
-    node = getNodeAtIndex(head, 1);
-    printf("\n%d", node->data);
+    // intLinkedList *node;
+    // node = getNodeAtIndex(head, 1);
+    //printf("\n%d", node->data);
 
     insert(&head, 6, 2);
     printf("\n");
@@ -130,7 +130,7 @@ int insert(intLinkedList **head, int value, int atIndex)
         return insertToHead(value, head);
     }
 
-    intLinkedList *current = getNodeAtIndex(head, atIndex - 1);
+    intLinkedList *current = getNodeAtIndex(*head, atIndex - 1);
 
     if(current != NULL)
     {
