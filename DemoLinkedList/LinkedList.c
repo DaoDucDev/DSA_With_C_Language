@@ -39,11 +39,7 @@ int main(int argc, char const *argv[])
 
     // intLinkedList *node;
     // node = getNodeAtIndex(head, 1);
-<<<<<<< HEAD
     // printf("\n%d", node->data);
-=======
-    //printf("\n%d", node->data);
->>>>>>> d0afa08b3ab940e0641790e79fea9ce232e21473
 
     // insert(&head, 6, 2);
     // printf("\n");
