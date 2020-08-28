@@ -1,9 +1,17 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+// typedef struct 
+// {
+//     char id[10];
+//     char name[50];
+//     int age;
+// } Student;
+
 //Khai bao struct Node
 struct Node
 {
+    //Student std;
     int data; //Luu du lieu
     struct Node *next; //Luu dia chi o nho cua node tiep theo
 };
