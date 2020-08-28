@@ -15,11 +15,12 @@ int insertToHead(int value, intLinkedList **head);
 void display(intLinkedList *head);
 void displayWithFor(intLinkedList *head);
 int deleteFromHead(intLinkedList **head);
-int delete(int value, intLinkedList **head);
+int deleteByValue(int value, intLinkedList **head);
 int indexOf(int value, intLinkedList *head);
 int insert(intLinkedList **head, int value, int atIndex);
 int cout(intLinkedList *head); //Dem so phan tu cua Linked List
 intLinkedList* getNodeAtIndex(intLinkedList *head, int index);
+
 
 int main(int argc, char const *argv[])
 {
@@ -34,16 +35,32 @@ int main(int argc, char const *argv[])
 
     //displayWithFor(head);
     display(head);
-    printf("\nSo phan tu: %d", cout(head));
+    // printf("\nSo phan tu: %d", cout(head));
 
-    intLinkedList *node;
-    node = getNodeAtIndex(head, 1);
-    printf("\n%d", node->data);
+    // intLinkedList *node;
+    // node = getNodeAtIndex(head, 1);
+    // printf("\n%d", node->data);
 
-    insert(&head, 6, 2);
-    printf("\n");
-    display(head);
+    // insert(&head, 6, 2);
+    // printf("\n");
+    // display(head);
     //printf("\n%d", indexOf(4, head));
+
+    printf("\nNhap vao gia tri can xoa: ");
+    int a;
+    scanf("%d", &a);
+
+    int value = deleteByValue(a, &head);
+    if(value == 1)
+    {
+        printf("Linked List sau khi xoa:\n");
+        display(head);
+    }
+    else
+    {
+        printf("%d ko ton tai trong Linked List!", a);
+    }
+    
     return 0;
 }
 
@@ -130,7 +147,7 @@ int insert(intLinkedList **head, int value, int atIndex)
         return insertToHead(value, head);
     }
 
-    intLinkedList *current = getNodeAtIndex(head, atIndex - 1);
+    intLinkedList *current = getNodeAtIndex(*head, atIndex - 1);
 
     if(current != NULL)
     {
@@ -169,4 +186,43 @@ intLinkedList *getNodeAtIndex(intLinkedList *head, int index)
     for(int i = 0; i < index; i++, iterator = iterator->next);
 
     return iterator;
+}
+
+int deleteByValue(int value, intLinkedList **head)
+{
+    intLinkedList *current = *head;
+    intLinkedList *pre = *head;
+
+    //Duyet Linked List de tim vi tri
+    //cua gia tri muon xoa
+    while (current != NULL)
+    {
+        //Tim thay vi tri cua gia tri muon xoa
+        //thi thoat khoi vong lap
+        if(current->data == value){
+            break;
+        }
+
+        pre = current;
+        current = current->next;
+    }
+
+    if(current != NULL)
+    {
+        //Gia tri can xoa nam o dau Linked List
+        if (current == pre)
+        {
+            *head = current->next;
+        }
+        else //Gia tri can xoa nam o vi tri bat ki
+            // cua Linked List
+        {
+            pre->next = current->next;
+        }
+        
+        free(current);
+        return 1;
+    }
+
+    return 0;
 }
