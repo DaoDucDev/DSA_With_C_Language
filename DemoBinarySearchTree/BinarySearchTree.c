@@ -35,6 +35,20 @@ int main(int argc, char const *argv[])
 
     printTree(root);
 
+    //Tìm kiếm
+    struct Node *found;
+    found = search(root, 91);
+
+    if (found != NULL)
+    {
+        printf("\nTim thay %d\n", found->data);
+    }
+    else
+    {
+        printf("\nKhong tim thay!\n");
+    }
+    
+    
     root = delete(root, 72);
     printf("Sau khi xoa: \n");
     printTree(root);
