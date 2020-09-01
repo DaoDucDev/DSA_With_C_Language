@@ -167,7 +167,9 @@ struct Node *delete (struct Node *root, int deleteValue)
         }
         else
         {
+            //Tìm node có giá trị nhỏ nhất ở cây con bên phải
             temp = findMin(root->right);
+
             root->data = temp->data;
             if(temp == root->right)
             {
@@ -204,4 +206,22 @@ struct Node *findMin(struct Node *root)
         return(findMin(root->left));
     }
     
+}
+
+struct Node *search(struct Node *root, int data)
+{
+    struct Node *current = root;
+    while (current != NULL && current->data != data)
+    {
+        //go to left tree
+        if (current->data > data)
+        {
+            current = current->left;
+        } //else go to right tree
+        else
+        {
+            current = current->right;
+        }
+    }
+    return current;
 }
